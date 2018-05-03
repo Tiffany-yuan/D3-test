@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .color{
+            background: red
+        }
+        .size{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <p class="color size">Hello</p>
+    <p></p>
+    <p></p>
+    <div id="apple">apple</div>
+</body>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    //select()
+    console.log(d3.select('p'))
+    //selectAll()
+    console.log(d3.selectAll('p'))
+    //classed()
+    d3.select('p')
+        .classed({'color':true, 'size':false })
+    //append()
+    var body = d3.select('body')
+    body.append('div').text('banana')
+    body.insert('div','#apple').text('orange')
+    //remove()
+    var apple = d3.select('#apple')
+    apple.remove()
+</script>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>apple</p>
+    <p>banana</p>
+    <p>orange</p>
+
+    <button type="button" onclick="mysort()">排序</button>
+    <button type="button" onclick="myadd()">增加数据</button>
+</body>
+</html>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var p = d3.select('body').selectAll('p')
+
+    //datum()
+    /*p.datum(7)
+    console.log(p)
+    console.log(p.datum())
+    d3_selectionPrototype.datum = function (value) {
+        return arguments.length
+            ? this.property('__data__',value)
+            : this.property('__data__')
+    }
+    p.datum('Thunder')
+        .text(function (d,i) {
+            return d + ' ' + i
+        })
+    p.datum('Thunder')
+        .append('span')
+        .text(function (d,i) {
+            return " " + d
+        })*/
+
+    //data()
+    /*var dataset = [1,2,3,4,5]
+    var update = p.data(dataset)
+    var enter = update.enter()
+    var exit = update.exit()
+    console.log(update)
+    console.log(enter)
+    console.log(exit)*/
+
+    //enter()
+    /*var dataset = [10,20,30,40]
+    d3.select('body')
+        .selectAll('div')
+        .data(dataset)
+        .enter()
+        .append('div')
+        .text(function (d) {
+            return d
+        })*/
+
+    //exit()
+    /*var dataset = [10,20]
+    var p = d3.select('body').selectAll('p')
+    var update = p.data(dataset)
+    var exit = update.exit()
+    update.text(function (d) {
+        return d
+    })
+    exit.remove()*/
+
+    //更新数据
+    var dataset = [30,36,45,132,89,184,43,27]
+    var width = 400
+    var height = 400
+    var svg = d3.select('body')
+        .append('svg')
+        .attr('width',width)
+        .attr('height',height)
+    var padding = {top: 20, right: 50, bottom: 20, left: 20}
+    var rectStep = 35
+    var rectWidth = 30
+    var rect = svg.selectAll('rect')
+        .data(dataset)
+        .enter()
+        .append('rect')
+        .attr('fill','steelblue')
+        .attr('x',function (d,i) {
+            return padding.left + i * rectStep
+        })
+        .attr('y',function (d) {
+            return height - padding.bottom - d
+        })
+        .attr('width',rectWidth)
+        .attr('height',function (d) {
+            return d
+        })
+    var text = svg.selectAll('text')
+        .data(dataset)
+        .enter()
+        .append('text')
+        .attr('fill','white')
+        .attr('font-size','14px')
+        .attr('text-anchor','middle')
+        .attr('x',function (d,i) {
+            return padding.left + i * rectStep
+        })
+        .attr('y',function (d) {
+            return height - padding.bottom -d
+        })
+        .attr('dx',rectWidth/2)
+        .attr('dy','1em')
+        .text(function (d) {
+            return d
+        })
+    function draw(){
+        var updateRect = svg.selectAll('rect')
+            .data(dataset)
+        var enterRect = updateRect.enter()
+        var exitRect = updateRect.exit()
+
+        // 矩形update部分的处理方法
+        updateRect.attr('fill','steelblue')
+            .attr('x',function (d,i) {
+                return padding.left + i * rectStep
+            })
+            .attr('y',function (d) {
+                return height - padding.bottom - d
+            })
+            .attr('width',rectWidth)
+            .attr('height',function (d) {
+                return d
+            })
+        // 矩形enter部分的处理方法
+        enterRect.append('rect')
+            .attr('fill','steelblue')
+            .attr('x',function (d,i) {
+                return padding.left + i * rectStep
+            })
+            .attr('y',function (d) {
+                return height - padding.bottom - d
+            })
+            .attr('width',rectWidth)
+            .attr('height',function (d) {
+                return d
+            })
+        // 矩形exit部分的处理方法
+        exitRect.remove()
+
+        var updateText = svg.selectAll('text')
+            .data(dataset)
+        var enterText = updateText.enter()
+        var exitText = updateText.exit()
+        // 矩形update部分的处理方法
+        updateText.attr('fill','white')
+            .attr('font-size','14px')
+            .attr('text-anchor','middle')
+            .attr('x',function (d,i) {
+                return padding.left + i * rectStep
+            })
+            .attr('y',function (d,i) {
+                return height - padding.bottom -d
+            })
+            .attr('dx',rectWidth/2)
+            .attr('dy','1em')
+            .text(function (d) {
+                return d
+            })
+        // 矩形enter部分的处理方法
+        enterText.append('text')
+            .attr('fill','white')
+            .attr('font-size','14px')
+            .attr('text-anchor','middle')
+            .attr('x',function (d,i) {
+                return padding.left + i * rectStep
+            })
+            .attr('y',function (d) {
+                return height - padding.bottom -d
+            })
+            .attr('dx',rectWidth/2)
+            .attr('dy','1em')
+            .text(function (d) {
+                return d
+            })
+        // 矩形exit部分的处理方法
+        exitText.remove()
+    }
+
+    function mysort() {
+        dataset.sort(d3.ascending)
+        draw()
+    }
+    function myadd() {
+        dataset.push(Math.floor(Math.random() * 100))
+        draw()
+    }
+
+</script>
