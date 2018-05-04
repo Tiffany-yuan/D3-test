@@ -21,7 +21,7 @@
     /*p.datum(7)
     console.log(p)
     console.log(p.datum())
-    d3_selectionPrototype.datum = function (value) {
+    /*d3_selectionPrototype.datum = function (value) {
         return arguments.length
             ? this.property('__data__',value)
             : this.property('__data__')
@@ -46,89 +46,89 @@
     console.log(exit)*/
 
     //enter()
-    /*var dataset = [10,20,30,40]
-    d3.select('body')
-        .selectAll('div')
-        .data(dataset)
-        .enter()
-        .append('div')
-        .text(function (d) {
-            return d
-        })*/
+     /*var dataset = [10,20,30,40]
+     d3.select('body')
+         .selectAll('div')
+         .data(dataset)
+         .enter()
+         .append('div')
+         .text(function (d) {
+             return d
+         })*/
 
     //exit()
-    /*var dataset = [10,20]
-    var p = d3.select('body').selectAll('p')
-    var update = p.data(dataset)
-    var exit = update.exit()
-    update.text(function (d) {
-        return d
-    })
-    exit.remove()*/
+    // var dataset = [10,20]
+    // var p = d3.select('body').selectAll('p')
+    // var update = p.data(dataset)
+    // var exit = update.exit()
+    // update.text(function (d) {
+    //     return d
+    // })
+    // exit.remove()
 
     //更新数据
-    var dataset = [30,36,45,132,89,184,43,27]
-    var width = 400
-    var height = 400
-    var svg = d3.select('body')
-        .append('svg')
-        .attr('width',width)
-        .attr('height',height)
-    var padding = {top: 20, right: 50, bottom: 20, left: 20}
-    var rectStep = 35
-    var rectWidth = 30
-    var rect = svg.selectAll('rect')
-        .data(dataset)
-        .enter()
-        .append('rect')
-        .attr('fill','steelblue')
-        .attr('x',function (d,i) {
-            return padding.left + i * rectStep
-        })
-        .attr('y',function (d) {
-            return height - padding.bottom - d
-        })
-        .attr('width',rectWidth)
-        .attr('height',function (d) {
-            return d
-        })
-    var text = svg.selectAll('text')
-        .data(dataset)
-        .enter()
-        .append('text')
-        .attr('fill','white')
-        .attr('font-size','14px')
-        .attr('text-anchor','middle')
-        .attr('x',function (d,i) {
-            return padding.left + i * rectStep
-        })
-        .attr('y',function (d) {
-            return height - padding.bottom -d
-        })
-        .attr('dx',rectWidth/2)
-        .attr('dy','1em')
-        .text(function (d) {
-            return d
-        })
-    function draw(){
-        var updateRect = svg.selectAll('rect')
-            .data(dataset)
-        var enterRect = updateRect.enter()
-        var exitRect = updateRect.exit()
+     var dataset = [30,36,45,132,89,184,43,27]
+     var width = 400
+     var height = 400
+     var svg = d3.select('body')
+         .append('svg')
+         .attr('width',width)
+         .attr('height',height)
+     var padding = {top: 20, right: 50, bottom: 20, left: 20}
+     var rectStep = 35
+     var rectWidth = 30
+     var rect = svg.selectAll('rect')
+         .data(dataset)
+         .enter()
 
-        // 矩形update部分的处理方法
-        updateRect.attr('fill','steelblue')
-            .attr('x',function (d,i) {
-                return padding.left + i * rectStep
-            })
-            .attr('y',function (d) {
-                return height - padding.bottom - d
-            })
-            .attr('width',rectWidth)
-            .attr('height',function (d) {
-                return d
-            })
-        // 矩形enter部分的处理方法
+         .attr('fill','s.append(\'rect\')teelblue')
+         .attr('x',function (d,i) {
+             return padding.left + i * rectStep
+         })
+         .attr('y',function (d) {
+             return height - padding.bottom - d
+         })
+         .attr('width',rectWidth)
+         .attr('height',function (d) {
+             return d
+         })
+     var text = svg.selectAll('text')
+         .data(dataset)
+         .enter()
+         .append('text')
+         .attr('fill','white')
+         .attr('font-size','14px')
+         .attr('text-anchor','middle')
+         .attr('x',function (d,i) {
+             return padding.left + i * rectStep
+         })
+         .attr('y',function (d) {
+             return height - padding.bottom -d
+         })
+         .attr('dx',rectWidth/2)
+         .attr('dy','1em')
+         .text(function (d) {
+             return d
+         })
+     function draw(){
+         var updateRect = svg.selectAll('rect')
+             .data(dataset)
+         var enterRect = updateRect.enter()
+         var exitRect = updateRect.exit()
+
+          //矩形update部分的处理方法
+         updateRect.attr('fill','steelblue')
+             .attr('x',function (d,i) {
+                 return padding.left + i * rectStep
+             })
+             .attr('y',function (d) {
+                 return height - padding.bottom - d
+             })
+             .attr('width',rectWidth)
+             .attr('height',function (d) {
+                 return d
+             })
+          //矩形enter部分的处理方法
         enterRect.append('rect')
             .attr('fill','steelblue')
             .attr('x',function (d,i) {

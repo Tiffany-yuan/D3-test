@@ -121,11 +121,10 @@ var yAxisScatter = d3.svg.axis()
     .scale(yScaleScatter)
     .orient('left')
 
-var circle = svgScatter.selectAll('rect')
+var circle = svgScatter.selectAll('circle')
     .data(datasetScatter)
     .enter()
     .append('circle')
-    .attr('fill','steelblue')
     .attr('cx',function (d) {
         return padding.left + xScaleScatter(d[0])
     })
